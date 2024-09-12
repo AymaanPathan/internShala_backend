@@ -2,11 +2,18 @@ const express = require("express");
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const cors = require("cors");
+const app = express();
+const corsOptions = {
+  origin: ["http://localhost:5173"],
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOptions));
+
+app.use(express.json());
 
 puppeteer.use(StealthPlugin());
-const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
-app.use(express.json());
 
 const router = express.Router();
 router.get("/", (req, res) => {
