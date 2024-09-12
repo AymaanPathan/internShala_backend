@@ -11,7 +11,7 @@ app.use(express.json());
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res;
+  res.send("HEllo");
 });
 
 router.post("/auto", async (req, res) => {
