@@ -4,16 +4,15 @@ const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const cors = require("cors");
 
 puppeteer.use(StealthPlugin());
-
 const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const router = express.Router();
 
-router.get('/',(req,res)=>{
-  res
-})
+router.get("/", (req, res) => {
+  res;
+});
 
 router.post("/auto", async (req, res) => {
   const { email, password, fieldName, coverLetter } = req.body;
