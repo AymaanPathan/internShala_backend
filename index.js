@@ -5,7 +5,7 @@ const cors = require("cors");
 
 puppeteer.use(StealthPlugin());
 const app = express();
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
 const router = express.Router();
