@@ -4,7 +4,7 @@ const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const cors = require("cors");
 const app = express();
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: "*",
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"],
 };
@@ -24,6 +24,12 @@ router.get("/", (req, res) => {
 
 router.post("/auto", async (req, res) => {
   const { email, password, fieldName, coverLetter } = req.body;
+  if ((!email, !password, !fieldName, !coverLetter)) {
+    return res.status(404).json({
+      Status: "Failed",
+      Message: "Please Provide All Info",
+    });
+  }
   console.log({ email, password, fieldName, coverLetter });
 
   const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
