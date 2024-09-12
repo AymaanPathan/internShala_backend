@@ -9,8 +9,7 @@ app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const router = express.Router();
-
-router.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("HEllo");
 });
 
