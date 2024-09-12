@@ -11,6 +11,10 @@ app.use(express.json());
 
 const router = express.Router();
 
+router.get('/',(req,res)=>{
+  res
+})
+
 router.post("/auto", async (req, res) => {
   const { email, password, fieldName, coverLetter } = req.body;
   console.log({ email, password, fieldName, coverLetter });
