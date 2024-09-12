@@ -9,8 +9,10 @@ app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const router = express.Router();
-app.get("/", (req, res) => {
-  res.send("HEllo");
+router.get("/", (req, res) => {
+  res.json({
+    Message: "Hello",
+  });
 });
 
 router.post("/auto", async (req, res) => {
