@@ -3,8 +3,8 @@
   "builds": [{ "src": "index.js", "use": "@vercel/node" }],
   "routes": [
     {
-      "src": "/auto",
-      "dest": "/auto",
+      "src": "/(.*)",
+      "dest": "/index.js",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
