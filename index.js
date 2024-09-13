@@ -2,6 +2,7 @@ const express = require("express");
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const cors = require("cors");
+const { executablePath } = require("puppeteer");
 const app = express();
 const corsOptions = {
   origin: "*",
@@ -40,17 +41,18 @@ router.post("/auto", async (req, res) => {
   const MAX_APPLICATIONS = 5;
 
   try {
-    browser = await puppeteer.launch({
+    const browser = await puppeteer.launch({
       headless: false,
+      executablePath: `C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe`, // Use Puppeteer's own Chromium
       args: ["--start-maximized"],
     });
 
     page = await browser.newPage();
-    const [width, height] = await page.evaluate(() => [
-      window.screen.availWidth,
-      window.screen.availHeight,
-    ]);
-    await page.setViewport({ width, height });
+    // const [width, height] = await page.evaluate(() => [
+    //   window.screen.availWidth,
+    //   window.screen.availHeight,
+    // ]);
+    // await page.setViewport({ width, height });
 
     await page.setUserAgent(
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -70,7 +72,7 @@ router.post("/auto", async (req, res) => {
 
     await page.waitForSelector("#modal_password", { visible: true });
     await page.type("#modal_password", password, { delay: 100 });
-    await delay(4000);
+    await delay(6000);
 
     await page.waitForSelector("#modal_login_submit", { visible: true });
     await Promise.all([
